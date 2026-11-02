@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { SITE_URL, OG_LOCALE, ALTERNATES } from "@/lib/site";
 import { withBase } from "@/lib/withBase";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.cargoflowafrica.co.za"),
+  metadataBase: new URL(`${SITE_URL}`),
   title: {
     default: "Cargo Flow Africa — Transport Brokerage & Logistics Coordination",
     template: "%s | Cargo Flow Africa",
@@ -38,8 +39,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "en_ZA",
-    url: "https://www.cargoflowafrica.co.za",
+    locale: OG_LOCALE,
+    url: `${SITE_URL}/`,
     siteName: "Cargo Flow Africa Transport Group",
     title: "Cargo Flow Africa — Transport Brokerage & Logistics Coordination",
     description:
@@ -61,7 +62,7 @@ export const metadata: Metadata = {
     images: [withBase("/images/logo-desktop.avif")],
   },
   alternates: {
-    canonical: "https://www.cargoflowafrica.co.za",
+    canonical: `${SITE_URL}/`,
   },
   icons: {
     icon: [
@@ -85,6 +86,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {Object.entries(ALTERNATES).map(([lang, href]) => (
+          <link key={lang} rel="alternate" hrefLang={lang} href={href} />
+        ))}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -104,10 +108,10 @@ export default function RootLayout({
               "@graph": [
                 {
                   "@type": "Organization",
-                  "@id": "https://www.cargoflowafrica.co.za/#organization",
+                  "@id": `${SITE_URL}/#organization`,
                   name: "Cargo Flow Africa Transport Group",
-                  url: "https://www.cargoflowafrica.co.za",
-                  logo: "https://www.cargoflowafrica.co.za/images/logo-desktop.avif",
+                  url: `${SITE_URL}/`,
+                  logo: `${SITE_URL}/images/logo-desktop.avif`,
                   email: "info@cargoflowafrica.co.za",
                   telephone: "+2673110098",
                   description:
@@ -156,10 +160,10 @@ export default function RootLayout({
                 },
                 {
                   "@type": "LocalBusiness",
-                  "@id": "https://www.cargoflowafrica.co.za/#localbusiness",
+                  "@id": `${SITE_URL}/#localbusiness`,
                   name: "Cargo Flow Africa Transport Group",
-                  image: "https://www.cargoflowafrica.co.za/images/logo-desktop.avif",
-                  url: "https://www.cargoflowafrica.co.za",
+                  image: `${SITE_URL}/images/logo-desktop.avif`,
+                  url: `${SITE_URL}/`,
                   telephone: "+2673110098",
                   email: "info@cargoflowafrica.co.za",
                   address: {
@@ -185,10 +189,10 @@ export default function RootLayout({
                 },
                 {
                   "@type": "Service",
-                  "@id": "https://www.cargoflowafrica.co.za/#service",
+                  "@id": `${SITE_URL}/#service`,
                   name: "Transport Brokerage & Logistics Coordination",
                   provider: {
-                    "@id": "https://www.cargoflowafrica.co.za/#organization",
+                    "@id": `${SITE_URL}/#organization`,
                   },
                   description:
                     "Transport brokerage, bulk cargo coordination, cross-border logistics, load & capacity matching, and transport documentation support across Southern Africa.",
