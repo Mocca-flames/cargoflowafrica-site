@@ -4,11 +4,15 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
 if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
-  echo "Uncommitted changes on dev. Commit and push them first."; exit 1
+  echo "Uncommitted changes. Commit and push to dev first."; exit 1
 fi
 
-echo ">> Building for domain root..."
-rm -rf out && npm run build
+deploy() {
+  echo ">> Building SITE=$1 -> $2"
+  rm -rf out && SITE=$1 npm run build
+  npx wrangler pages deploy out --project-name=$2 --branch=main --commit-dirty=true
+}
 
-echo ">> Deploying to Cloudflare Pages (production)..."
-npx wrangler pages deploy out --project-name=cargo-flow-africa --branch=main --commit-dirty=true
+deploy za cargo-flow-africa
+deploy bw cargo-flow-africa-bw
+echo ">> Both sites deployed."
