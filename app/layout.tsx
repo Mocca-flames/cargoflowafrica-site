@@ -133,13 +133,26 @@ export default function RootLayout({
                     addressLocality: "Gaborone",
                     addressCountry: "BW",
                   },
-                  contactPoint: {
-                    "@type": "ContactPoint",
-                    telephone: "+2673110098",
-                    contactType: "customer service",
-                    availableLanguage: "English",
-                  },
-                  sameAs: ["https://wa.me/26773732442"],
+                  contactPoint: [
+                    {
+                      "@type": "ContactPoint",
+                      telephone: "+2673110098",
+                      contactType: "customer service",
+                      areaServed: "BW",
+                      availableLanguage: "English",
+                    },
+                    {
+                      "@type": "ContactPoint",
+                      telephone: "+27817584591",
+                      contactType: "customer service",
+                      areaServed: "ZA",
+                      availableLanguage: "English",
+                    },
+                  ],
+                  sameAs: [
+                    "https://wa.me/26773732442",
+                    "https://wa.me/27817584591",
+                  ],
                 },
                 {
                   "@type": "LocalBusiness",
