@@ -16,6 +16,7 @@ echo ">> Publishing to gh-pages..."
 git worktree prune
 git worktree add --detach "$TMP"
 cd "$TMP"
+git branch -D gh-pages 2>/dev/null || true
 git checkout --orphan gh-pages
 git rm -rf . -q
 cp -r "$ROOT/out/." .
