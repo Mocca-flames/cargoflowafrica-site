@@ -1,0 +1,157 @@
+/* ── Header shell ────────────────────────────────────────── */
+.header {
+  position:         fixed;
+  top:              0;
+  left:             0;
+  right:            0;
+  z-index:          50;
+  background-color: rgba(248, 244, 235, 0.926);
+  backdrop-filter:  blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom:    1px solid var(--color-border);
+}
+
+/* ── Inner row ───────────────────────────────────────────── */
+.inner {
+  height:          var(--header-h);
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  gap:             var(--space-6);
+}
+
+/* ── Logo ────────────────────────────────────────────────── */
+.logo {
+  display:     flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logoImg {
+  height:     2.5rem;
+  width:      auto;
+  object-fit: contain;
+}
+
+/* ── Desktop nav ─────────────────────────────────────────── */
+.desktopNav {
+  display:     none;
+  align-items: center;
+  gap:         var(--space-8);
+}
+
+@media (min-width: 768px) {
+  .desktopNav {
+    display: flex;
+  }
+}
+
+.navLink {
+  display:         inline-flex;
+  align-items:     center;
+  gap:             var(--space-1);
+  font-size:       0.875rem;
+  color:           var(--color-muted);
+  transition:      color var(--transition-base);
+  white-space:     nowrap;
+}
+
+.navLink:hover {
+  color: var(--color-foreground);
+}
+
+.navLinkDownload {
+  color: var(--color-muted);
+}
+
+.navLinkDownload:hover {
+  color: var(--color-accent);
+}
+
+/* ── Actions row (CTA + hamburger) ──────────────────────── */
+.actions {
+  display:     flex;
+  align-items: center;
+  gap:         var(--space-3);
+}
+
+.desktopCta {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .desktopCta {
+    display: inline-flex;
+  }
+}
+
+.menuBtn {
+  display:          flex;
+  align-items:      center;
+  justify-content:  center;
+  width:            2.25rem;
+  height:           2.25rem;
+  border-radius:    var(--radius-md);
+  border:           1px solid var(--color-border);
+  background:       transparent;
+  color:            var(--color-foreground);
+  cursor:           pointer;
+  transition:       background-color var(--transition-base),
+                    border-color     var(--transition-base);
+}
+
+.menuBtn:hover {
+  background-color: var(--color-secondary);
+  border-color:     var(--color-border);
+}
+
+@media (min-width: 768px) {
+  .menuBtn {
+    display: none;
+  }
+}
+
+/* ── Mobile nav dropdown ─────────────────────────────────── */
+.mobileNav {
+  display:     none;
+  overflow:    hidden;
+  border-top:  1px solid var(--color-border);
+}
+
+.mobileNavOpen {
+  display: block;
+}
+
+.mobileNavInner {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--space-1);
+  padding-top:    var(--space-4);
+  padding-bottom: var(--space-4);
+}
+
+.mobileLink {
+  display:         inline-flex;
+  align-items:     center;
+  gap:             var(--space-2);
+  font-size:       0.9375rem;
+  color:           var(--color-muted);
+  padding:         var(--space-2) 0;
+  transition:      color var(--transition-base);
+}
+
+.mobileLink:hover {
+  color: var(--color-foreground);
+}
+
+.mobileCta {
+  margin-top:   var(--space-4);
+  align-self:   flex-start;
+  border-radius: var(--radius-full);
+}
+
+@media (min-width: 768px) {
+  .mobileNav {
+    display: none !important;
+  }
+}

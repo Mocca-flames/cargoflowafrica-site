@@ -1,0 +1,179 @@
+.section {
+  padding-top:      calc(var(--space-24) + var(--space-8));
+  padding-bottom:   var(--space-32);
+  border-top:       1px solid var(--color-border);
+  background-color: var(--color-card);
+  margin-top:       var(--space-16);
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding-top: calc(var(--space-32) + var(--space-12));
+    margin-top:   var(--space-24);
+  }
+}
+
+.intro {
+  text-align: center;
+  max-width:  46rem;
+  margin:     0 auto var(--space-16);
+}
+
+.heading {
+  font-size:      clamp(2rem, 4vw, 3rem);
+  font-weight:    500;
+  letter-spacing: -0.02em;
+  line-height:    1.08;
+  text-wrap:      balance;
+}
+
+.accentItalic {
+  color:      var(--color-accent);
+  font-style: italic;
+}
+
+.body {
+  margin-top:  var(--space-6);
+  font-size:   1.0625rem;
+  color:       var(--color-muted);
+  line-height: 1.75;
+  max-width:   50ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Two-column grid ─────────────────────────── */
+.grid {
+  display: grid;
+  gap:     var(--space-8);
+}
+
+@media (min-width: 768px) {
+  .grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── Details card ────────────────────────────── */
+.detailsCard {
+  background-color: var(--color-background);
+  border-radius:    var(--radius-2xl);
+  padding:          var(--space-8);
+  border:           1px solid var(--color-border);
+  display:          flex;
+  flex-direction:   column;
+  justify-content:  center;
+}
+
+.cardTitle {
+  font-size:     1.375rem;
+  font-weight:   500;
+  margin-bottom: var(--space-6);
+}
+
+.contactList {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--space-6);
+}
+
+.contactItem {
+  display:     flex;
+  align-items: flex-start;
+  gap:         var(--space-4);
+}
+
+.contactIconWrap {
+  display:          flex;
+  align-items:      center;
+  justify-content:  center;
+  width:            2.5rem;
+  height:           2.5rem;
+  border-radius:    50%;
+  background-color: var(--color-secondary);
+  color:            var(--color-foreground);
+  flex-shrink:      0;
+}
+
+.contactLabel {
+  display:        block;
+  font-size:      0.75rem;
+  color:          var(--color-muted);
+  margin-bottom:  var(--space-1);
+}
+
+.contactValue {
+  display:     block;
+  font-weight: 500;
+}
+
+.contactLink {
+  display:     block;
+  font-weight: 500;
+  color:       var(--color-foreground);
+  transition:  color var(--transition-base);
+}
+
+.contactLink + .contactLink {
+  margin-top: var(--space-1);
+}
+
+.contactLink:hover {
+  color: var(--color-accent);
+}
+
+.address {
+  font-weight:  500;
+  line-height:  1.65;
+}
+
+  /* ── CTA card ────────────────────────────────── */
+  .ctaCard {
+    position:         relative;
+    background-color: var(--color-primary);
+    color:            var(--color-primary-foreground);
+    border-radius:    var(--radius-2xl);
+    padding:          var(--space-8);
+    display:          flex;
+    flex-direction:   column;
+    justify-content:  center;
+    overflow:         hidden;
+  }
+
+@media (min-width: 1024px) {
+  .ctaCard { padding: var(--space-12); }
+}
+
+  .grain {
+    position:       absolute;
+    inset:          0;
+    opacity:        0.5;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    z-index:        0;
+  }
+
+.ctaInner {
+  position: relative;
+  z-index:  1;
+}
+
+.ctaTitle {
+  font-size:     1.75rem;
+  font-weight:   500;
+  margin-bottom: var(--space-4);
+}
+
+.ctaBody {
+  color:         rgba(248, 244, 235, 0.75);
+  line-height:   1.75;
+  margin-bottom: var(--space-8);
+}
+
+.ctaBtn {
+  width:     100%;
+  max-width: 20rem;
+  background-color: aliceblue;
+}
+
+@media (min-width: 640px) {
+  .ctaBtn { width: auto; }
+}

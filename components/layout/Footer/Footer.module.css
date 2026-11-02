@@ -1,0 +1,159 @@
+.footer {
+  border-top:       1px solid var(--color-border);
+  padding-top:      var(--space-12);
+  padding-bottom:   var(--space-12);
+  background-color: rgba(232, 216, 185, 0.25);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.grid {
+  display:               grid;
+  grid-template-columns: 1fr;
+  gap:                   var(--space-12);
+  padding-bottom:        var(--space-8);
+  border-bottom:         1px solid var(--color-border);
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--space-12);
+  }
+}
+
+/* ── Brand column ──────────────────────────── */
+.brand {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--space-5);
+}
+
+.logo {
+  height:     2.25rem;
+  width:      auto;
+  object-fit: contain;
+}
+
+.tagline {
+  font-size: 0.875rem;
+  color:     var(--color-muted);
+  max-width: 28ch;
+}
+
+/* Contact list */
+.contactList {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--space-4);
+}
+
+.contactItem {
+  display:     flex;
+  align-items: flex-start;
+  gap:         var(--space-3);
+}
+
+.contactIcon {
+  display:          flex;
+  align-items:      center;
+  justify-content:  center;
+  flex-shrink:      0;
+  margin-top:       0.125rem;
+  color:            var(--color-accent);
+}
+
+.contactLabel {
+  display:       block;
+  font-size:     0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color:         var(--color-muted);
+  margin-bottom: var(--space-1);
+}
+
+.contactValue {
+  display:     block;
+  font-size:   0.875rem;
+  font-weight: 500;
+  color:       var(--color-foreground);
+}
+
+.contactLink {
+  display:     block;
+  font-size:   0.875rem;
+  font-weight: 500;
+  color:       var(--color-foreground);
+  transition:  color var(--transition-base);
+}
+
+.contactLink:hover {
+  color: var(--color-accent);
+}
+
+/* Profile download */
+.profileLink {
+  display:     inline-flex;
+  align-items: center;
+  gap:         var(--space-2);
+  font-size:   0.875rem;
+  font-weight: 500;
+  color:       var(--color-accent);
+  transition:  color var(--transition-base);
+}
+
+.profileLink:hover {
+  color: var(--color-accent-hover);
+}
+
+/* ── Link groups ──────────────────────────── */
+.linkGroup {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--space-5);
+}
+
+.linkGroupTitle {
+  font-size:   1.0625rem;
+  font-weight: 600;
+  color:       var(--color-foreground);
+}
+
+.linkList {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--space-3);
+}
+
+.footerLink {
+  font-size:   0.875rem;
+  color:       var(--color-muted);
+  transition:  color var(--transition-base);
+}
+
+.footerLink:hover {
+  color: var(--color-foreground);
+}
+
+/* ── Copyright bar ─────────────────────────── */
+.copyright {
+  display:         flex;
+  flex-direction:  column;
+  align-items:     center;
+  gap:             var(--space-2);
+  font-size:       0.8125rem;
+  color:           var(--color-muted);
+  text-align:      center;
+}
+
+@media (min-width: 768px) {
+  .copyright {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}

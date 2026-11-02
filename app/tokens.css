@@ -1,0 +1,184 @@
+/* ============================================
+   CARGO FLOW AFRICA — DESIGN TOKENS
+   Source of truth: DESIGN.md
+   ============================================ */
+
+:root {
+  /* ─── Color Tokens ─── */
+  --color-canvas: #f8f4eb;
+  --color-canvas-alt: #e8d8b9;
+  --color-ink: #12382f;
+  --color-ink-muted: #3d5449;
+  --color-accent-gold: #d4a44c;
+  --color-accent-terracotta: #b9623e;
+  --color-surface: #ffffff;
+  --color-border: #dccba9;
+
+  /* ─── Semantic Color Aliases ─── */
+  --color-foreground: var(--color-ink);
+  --color-muted: var(--color-ink-muted);
+  --color-accent: var(--color-accent-gold);
+  --color-accent-hover: #b8860b;
+  --color-primary: var(--color-ink);
+  --color-primary-foreground: var(--color-surface);
+  --color-secondary: var(--color-canvas-alt);
+  --color-background: var(--color-canvas);
+  --color-card: var(--color-surface);
+
+  /* ─── HSL-based System (Tailwind / shadcn style) ─── */
+  --background: 42 48% 95%;
+  --foreground: 166 51% 15%;
+  --card: 0 0% 100%;
+  --card-foreground: 166 51% 15%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 166 51% 15%;
+  --primary: 166 51% 15%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 40 51% 82%;
+  --secondary-foreground: 166 51% 15%;
+  --muted: 40 51% 82%;
+  --muted-foreground: 151 16% 28%;
+  --accent: 39 61% 56%;
+  --accent-foreground: 166 51% 15%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 40 42% 76%;
+  --input: 40 42% 76%;
+  --ring: 39 61% 56%;
+  --chart-1: 39 61% 56%;
+  --chart-2: 18 50% 48%;
+  --chart-3: 166 51% 15%;
+  --chart-4: 43 74% 66%;
+  --chart-5: 27 87% 67%;
+  --radius: 0.625rem;
+
+  /* ─── Sidebar Tokens ─── */
+  --sidebar-background: 166 51% 15%;
+  --sidebar-foreground: 42 48% 95%;
+  --sidebar-primary: 39 61% 56%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 166 51% 20%;
+  --sidebar-accent-foreground: 42 48% 95%;
+  --sidebar-border: 40 42% 76%;
+  --sidebar-ring: 39 61% 56%;
+
+  /* ─── Typography ─── */
+  --font-display: "Sora", "Segoe UI", sans-serif;
+  --font-body: "DM Sans", "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", monospace;
+
+  /* ─── Type Scale (fluid) ─── */
+  --text-display-xl: clamp(3.5rem, 6vw + 1rem, 6rem);
+  --text-display-l: clamp(2.25rem, 4vw + 0.5rem, 3.5rem);
+  --text-display-m: clamp(1.25rem, 2vw + 0.25rem, 1.75rem);
+  --text-body-l: clamp(1.125rem, 1vw + 0.5rem, 1.25rem);
+  --text-body-m: clamp(0.9375rem, 0.5vw + 0.5rem, 1rem);
+  --text-label: clamp(0.75rem, 0.5vw + 0.5rem, 0.875rem);
+
+  /* ─── Spacing (4px base) ─── */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-14: 3.5rem;   /* 56px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+  --space-32: 8rem;     /* 128px */
+  --space-48: 12rem;    /* 192px */
+
+  /* ─── Motion ─── */
+  --ease-cinematic: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-snap: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --duration-fast: 200ms;
+  --duration-base: 500ms;
+  --duration-cinematic: 1600ms;
+  --transition-base: 250ms;
+
+  /* ─── Border Radius ─── */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+  --radius-3xl: 1.5rem;
+  --radius-full: 999rem;
+
+  /* ─── Shadows ─── */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+  /* ─── Layout ─── */
+  --section-padding: clamp(2rem, 5vw, 8rem);
+  --container-max: 1280px;
+  --header-h: 4rem;
+
+  /* ─── Z-Index ─── */
+  --z-visual: 1;
+  --z-data: 10;
+  --z-text: 20;
+  --z-nav: 100;
+  --z-whatsapp: 9999;
+}
+
+/* ─── Dark Theme Inverted Variants ─── */
+.dark {
+  /* Core tokens inverted */
+  --color-canvas: #12382f;
+  --color-canvas-alt: #1a4a3f;
+  --color-ink: #f8f4eb;
+  --color-ink-muted: #a3b8af;
+  --color-surface: #164036;
+  --color-border: #235246;
+
+  /* Semantic Aliases */
+  --color-foreground: var(--color-ink);
+  --color-muted: var(--color-ink-muted);
+  --color-accent: var(--color-accent-gold);
+  --color-primary: #12382f;
+  --color-primary-foreground: #f8f4eb;
+  --color-secondary: #1a4a3f;
+  --color-background: var(--color-canvas);
+  --color-card: var(--color-surface);
+
+  /* HSL-based dark variants */
+  --background: 166 51% 15%;
+  --foreground: 42 48% 95%;
+  --card: 166 51% 19%;
+  --card-foreground: 42 48% 95%;
+  --popover: 166 51% 19%;
+  --popover-foreground: 42 48% 95%;
+  --primary: 166 51% 15%;
+  --primary-foreground: 42 48% 95%;
+  --secondary: 166 51% 22%;
+  --secondary-foreground: 42 48% 95%;
+  --muted: 166 51% 19%;
+  --muted-foreground: 151 16% 50%;
+  --accent: 39 61% 56%;
+  --accent-foreground: 166 51% 15%;
+  --destructive: 0 62% 40%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 166 51% 25%;
+  --input: 166 51% 25%;
+  --ring: 39 61% 56%;
+  --chart-1: 39 61% 56%;
+  --chart-2: 18 50% 48%;
+  --chart-3: 166 51% 15%;
+  --chart-4: 43 74% 66%;
+  --chart-5: 27 87% 67%;
+  --sidebar-background: 166 51% 10%;
+  --sidebar-foreground: 42 48% 92%;
+  --sidebar-primary: 39 61% 56%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 166 51% 18%;
+  --sidebar-accent-foreground: 42 48% 92%;
+  --sidebar-border: 166 51% 22%;
+  --sidebar-ring: 39 61% 56%;
+}
