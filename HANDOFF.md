@@ -84,3 +84,56 @@ cargoflow-nextjs/
    - If an interactive form (e.g. quote request form submission via Server Actions or email service like Resend) is needed, a Form component can be created under `components/ui/QuoteForm/`.
 4. **Cloudflare Pages / Vercel Deployment:**
    - Note the presence of `cloudflare-pages-push-SKILL.md` in the original directory. If deploying to Cloudflare Pages or Vercel, link git repository from `cargoflow-nextjs`.
+
+---
+
+# Deployment & SEO Handoff (updated 2 Nov 2026)
+
+## Architecture
+- Repo: https://github.com/Mocca-flames/cargoflowafrica-site (public). `dev` = editable source (default branch). `gh-pages` = static build only (never edit by hand).
+- Static export (`output: "export"`). One codebase builds two country sites via env vars:
+  - `SITE=za|bw` (see `lib/site.ts`): sets canonical, hreflang, og:locale, sitemap, robots.
+  - `BASE_PATH` (only for GitHub Pages): `/cargoflowafrica-site`. Empty everywhere else.
+- Asset paths go through `withBase()` in `lib/withBase.ts`. Always use it for `/images/...`, `/profile.pdf` etc.
+- `mailto:` addresses in Contact/Footer are intentionally per-office (.co.bw and .co.za). Do not "fix" them.
+
+## Hosts
+| Purpose | URL | Source |
+|---|---|---|
+| Live SA (production) | https://www.cargoflowafrica.co.za | Pages project `cargo-flow-africa` (SITE=za) |
+| Live Botswana (production) | https://www.cargoflowafrica.co.bw | Pages project `cargo-flow-africa-bw` (SITE=bw) |
+| GitHub preview | https://mocca-flames.github.io/cargoflowafrica-site/ | `gh-pages` branch |
+
+## Workflow
+1. Edit and preview: `npm run dev`
+2. Save: `git add -A && git commit -m "msg" && git push origin dev` (live sites untouched)
+3. GitHub preview: `bash scripts/deploy.sh`
+4. Production (both countries): `bash scripts/deploy-cf.sh`
+Both scripts refuse to run with uncommitted tracked changes.
+
+## SEO design (do not change without reading this)
+- Two ccTLD sites, each with a self-referencing canonical on its own `www` host, trailing slash.
+- hreflang: `en-ZA`, `en-BW`, `x-default` (-> .co.za). Written manually in `<head>` in `app/layout.tsx` because Next strips the trailing slash from cross-origin `alternates.languages`. Canonical and hreflang URLs must match exactly.
+- sitemap.xml and robots.txt are generated per site and point at their own host. They are NOT byte-identical across domains on purpose (identical files would make .co.bw advertise .co.za URLs).
+- Never canonicalise one country to the other (cross-domain canonical can make hreflang ignored).
+
+## Status
+Done:
+- Both Pages projects deployed; .co.za domains on `cargo-flow-africa`, .co.bw domains moved to `cargo-flow-africa-bw`.
+- Verified: each .bw host serves a .co.bw canonical, sitemap and robots.txt.
+- Rollback point for the old site: Pages project `cargo-flow-africa`, deployment `33b2409f` (Deployments tab, "Rollback").
+
+## TODO (remaining)
+1. **Apex -> www 301 redirects (not working yet).** `cargoflowafrica.co.za` and `cargoflowafrica.co.bw` still return 200. In each Cloudflare zone: Rules > Redirect Rules > Create rule (deploy, not draft):
+   - Filter: `(http.host eq "cargoflowafrica.co.za")` (use .bw in the other zone)
+   - Action: Dynamic, `concat("https://www.cargoflowafrica.co.za", http.request.uri.path)`, 301, preserve query string.
+   - Test: `curl -sI "https://cargoflowafrica.co.za/?a=1" | grep -iE "^HTTP|^location"` should show 301 to www.
+2. **Google Search Console:** add a property for each `www` host (or domain properties), submit each site's own `/sitemap.xml`, then check International Targeting / Page indexing after a few weeks.
+3. **GitHub Pages preview is indexable and duplicates the .co.za canonical.** Decide whether to add `noindex` for that build or make the repo's Pages site private/disabled once sign-off is complete.
+4. Confirm the .bw `www` and apex domains show Active in `cargo-flow-africa-bw` > Custom domains.
+5. Untracked `cloudflare-pages-push-SKILL.md` in the project root is reference only; add to `.gitignore` or delete.
+
+## Gotchas
+- Pasting multi-line heredocs into Git Bash can scramble; verify with `cat` / `bash -n` after.
+- Wrangler is logged in via OAuth (`npx wrangler whoami`). No API tokens are stored in the repo.
+- LF/CRLF warnings on commit are harmless.
