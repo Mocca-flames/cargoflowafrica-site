@@ -9,7 +9,7 @@ if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
 fi
 
 echo ">> Building..."
-rm -rf out && npm run build
+rm -rf out && BASE_PATH=/cargoflowafrica-site npm run build
 touch out/.nojekyll
 
 echo ">> Publishing to gh-pages..."
