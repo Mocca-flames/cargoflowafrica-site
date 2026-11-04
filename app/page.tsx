@@ -11,7 +11,7 @@ import Contact from "@/components/home_page/Contact/Contact";
 export default function HomePage() {
   return (
     <>
-      <Header />
+      <Header immersive />
       <main id="main-content">
         <Hero />
         <About />

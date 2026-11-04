@@ -1,0 +1,132 @@
+.section {
+  position: relative;
+  padding-top: var(--space-14);
+  padding-bottom: var(--space-16);
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+  overflow: hidden;
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+.intro {
+  margin-bottom: var(--space-8);
+  position: relative;
+  z-index: 1;
+}
+
+.accentLabel {
+  color: var(--color-accent) !important;
+}
+
+.heading {
+  font-size: clamp(1.85rem, 7vw, 2.35rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--color-primary-foreground);
+  margin-top: var(--space-2);
+}
+
+.body {
+  margin-top: var(--space-3);
+  font-size: 0.95rem;
+  color: rgba(248, 244, 235, 0.7);
+  line-height: 1.65;
+}
+
+/* ── Mobile Stepped Timeline ── */
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  list-style: none;
+  padding: 0 0 0 2rem;
+  margin: 0;
+}
+
+/* Continuous vertical rail */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 0.85rem;
+  top: 1rem;
+  bottom: 2rem;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-accent-gold) 0%,
+    rgba(212, 164, 76, 0.3) 100%
+  );
+}
+
+.stepCard {
+  position: relative;
+  padding: 1.25rem;
+  background-color: rgba(248, 244, 235, 0.05);
+  border: 1px solid rgba(248, 244, 235, 0.1);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Step node on timeline */
+.nodeMarker {
+  position: absolute;
+  left: -2rem;
+  top: 1.25rem;
+  transform: translateX(-50%);
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  border: 2px solid var(--color-accent-gold);
+  color: var(--color-accent-gold);
+  font-size: 0.65rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  box-shadow: 0 0 8px rgba(212, 164, 76, 0.3);
+}
+
+.stepTop {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.5rem;
+}
+
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background-color: rgba(212, 164, 76, 0.15);
+  border: 1px solid rgba(212, 164, 76, 0.3);
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.stepTitle {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-primary-foreground);
+  line-height: 1.25;
+}
+
+.stepBody {
+  font-size: 0.85rem;
+  color: rgba(248, 244, 235, 0.75);
+  line-height: 1.6;
+  margin: 0;
+}

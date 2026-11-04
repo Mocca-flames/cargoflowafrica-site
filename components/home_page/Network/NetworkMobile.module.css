@@ -1,0 +1,123 @@
+.section {
+  padding-top: var(--space-14);
+  padding-bottom: var(--space-16);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-canvas);
+}
+
+.intro {
+  margin-bottom: var(--space-8);
+}
+
+.heading {
+  font-size: clamp(1.85rem, 7vw, 2.35rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--color-foreground);
+  margin-top: var(--space-2);
+}
+
+.body {
+  margin-top: var(--space-3);
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  line-height: 1.65;
+}
+
+.mobileStack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ── Country Tag Cloud ── */
+.countryCard {
+  background-color: rgba(232, 216, 185, 0.35);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  padding: 1.25rem;
+}
+
+.cardTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-foreground);
+  margin-bottom: 0.35rem;
+}
+
+.cardSubtitle {
+  font-size: 0.825rem;
+  color: var(--color-muted);
+  margin-bottom: 1rem;
+}
+
+.countryChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.countryChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 1px 4px rgba(18, 56, 47, 0.04);
+}
+
+.countryDot {
+  display: block;
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+}
+
+.countryName {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-foreground);
+}
+
+/* ── Vetting Card ── */
+.vettingCard {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  padding: 1.25rem;
+  box-shadow: 0 2px 10px rgba(18, 56, 47, 0.05);
+}
+
+.vettingList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.vettingItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.vettingIcon {
+  color: var(--color-accent);
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.vettingText {
+  font-size: 0.825rem;
+  color: var(--color-muted);
+  line-height: 1.5;
+}

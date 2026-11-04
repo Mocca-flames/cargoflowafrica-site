@@ -1,0 +1,124 @@
+.section {
+  padding-top: var(--space-24);
+  padding-bottom: var(--space-32);
+}
+
+.intro {
+  max-width: 48rem;
+  margin-bottom: var(--space-16);
+}
+
+.heading {
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--color-foreground);
+}
+
+.headingMuted {
+  color: var(--color-muted);
+}
+
+.body {
+  margin-top: var(--space-6);
+  font-size: 1.0625rem;
+  color: var(--color-muted);
+  line-height: 1.75;
+}
+
+.profileBtn {
+  margin-top: var(--space-8);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-8) var(--space-6) var(--space-10);
+  border-radius: var(--radius-3xl);
+  background-color: var(--color-surface);
+  box-shadow:
+    0 1px 2px color-mix(in srgb, var(--color-ink) 5%, transparent),
+    0 18px 40px -18px color-mix(in srgb, var(--color-ink) 16%, transparent);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 2px 4px color-mix(in srgb, var(--color-ink) 6%, transparent),
+    0 28px 56px -20px color-mix(in srgb, var(--color-ink) 24%, transparent);
+}
+
+.card::after {
+  content: "→";
+  position: absolute;
+  right: var(--space-6);
+  bottom: var(--space-5);
+  font-size: 1.125rem;
+  line-height: 1;
+  color: var(--color-accent-gold);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.card:hover::after,
+.card:focus-within::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.iconWrap {
+  display: flex;
+  color: var(--color-foreground);
+  margin-bottom: var(--space-2);
+  transition: transform var(--transition-base);
+}
+
+.card:hover .iconWrap {
+  transform: scale(1.08);
+}
+
+.iconWrap svg {
+  display: block;
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.iconAccent {
+  stroke: var(--color-accent-gold);
+}
+
+.iconAccentFill {
+  fill: var(--color-accent-gold);
+  stroke: none;
+}
+
+.cardTitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-foreground);
+}
+
+.cardBody {
+  font-size: 0.9375rem;
+  color: var(--color-muted);
+  line-height: 1.8;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

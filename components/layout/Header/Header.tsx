@@ -1,124 +1,197 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { withBase } from "@/lib/withBase";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./Header.module.css";
 
-export default function Header() {
+interface HeaderProps {
+  immersive?: boolean;
+}
+
+const KNOWN_DARK = new Set([
+  "hero",
+  "page-hero-dark",
+  "coverage-section",
+  "corridor-section",
+  "site-footer",
+]);
+
+function luminance(r: number, g: number, b: number) {
+  const f = (c: number) => {
+    const s = c / 255;
+    return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+  };
+  return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
+}
+
+function sectionIsDark(el: Element): boolean {
+  if (el.id && KNOWN_DARK.has(el.id)) return true;
+  if (
+    el.classList.contains("corridor") ||
+    el.classList.contains("cov2") ||
+    el.classList.contains("page-hero--dark")
+  )
+    return true;
+  if (el.closest(".corridor") && el.tagName === "SECTION") return true;
+  const bg = getComputedStyle(el).backgroundColor;
+  const m = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+  if (!m) return false;
+  if (bg.startsWith("rgba") && parseFloat(bg.split(",")[3]) < 0.15) return false;
+  return luminance(+m[1], +m[2], +m[3]) < 0.32;
+}
+
+export default function Header({ immersive }: HeaderProps = {}) {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">(
+    immersive ? "dark" : "light"
+  );
+
+  useEffect(() => {
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 24);
+      const delta = y - lastY;
+      if (Math.abs(delta) < 8) return;
+      setHidden(delta > 0 && y > 80);
+      lastY = y;
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    let raf = 0;
+    const probe = () => {
+      raf = 0;
+      const x = window.innerWidth / 2;
+      const y = 44;
+      const hit = document.elementFromPoint(x, y);
+      const section = hit?.closest?.("section, footer, header");
+      if (section) setTheme(sectionIsDark(section) ? "dark" : "light");
+      else setTheme(window.scrollY < window.innerHeight * 0.9 ? "dark" : "light");
+    };
+    const onScrollProbe = () => {
+      if (!raf) raf = requestAnimationFrame(probe);
+    };
+    probe();
+    window.addEventListener("scroll", onScrollProbe, { passive: true });
+    window.addEventListener("resize", onScrollProbe);
+    return () => {
+      window.removeEventListener("scroll", onScrollProbe);
+      window.removeEventListener("resize", onScrollProbe);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
 
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className={styles.header}>
-      <div className={`container ${styles.inner}`}>
-        {/* Logo */}
-        <Link href="/" className={styles.logo} aria-label="Cargo Flow Africa — Home">
-          <picture>
-            <source
-              media="(max-width: 768px)"
-              srcSet={withBase("/images/logo-mobile.avif")}
-              type="image/avif"
-            />
-            <Image
-              src={withBase("/images/logo-desktop.avif")}
-              alt="Cargo Flow Africa Transport Group"
-              width={160}
-              height={40}
-              priority
-              className={styles.logoImg}
-            />
-          </picture>
-        </Link>
-
-        {/* Desktop Navigation */}
-        <nav className={styles.desktopNav} aria-label="Main navigation">
-          <Link href="#about"      className={styles.navLink}>About Us</Link>
-          <Link href="#services"   className={styles.navLink}>Services</Link>
-          <Link href="#industries" className={styles.navLink}>Industries</Link>
-          <Link href="#process"    className={styles.navLink}>Process</Link>
-          <Link href="#contact"    className={styles.navLink}>Contact Us</Link>
-          <a
-            href={withBase("/profile.pdf")}
-            download
-            className={`${styles.navLink} ${styles.navLinkDownload}`}
+    <>
+      <header
+        className={`${styles.wrap}${scrolled ? ` ${styles.scrolled}` : ""}${hidden && !isOpen ? ` ${styles.hidden}` : ""}`}
+        data-theme={theme}
+      >
+        <div className={styles.pill} data-theme={theme}>
+          <Link
+            href="/"
+            className={styles.logo}
+            aria-label="Cargo Flow Africa — Home"
           >
-            Profile
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M14 2H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-8l-8-8z"/>
-              <path d="M14 2v8h8"/>
-              <path d="M12 19v-8a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v8"/>
-              <path d="M10 17l2 2 2-2"/>
-            </svg>
-          </a>
-        </nav>
-
-        {/* Desktop CTA + Mobile toggle */}
-        <div className={styles.actions}>
-          <Link href="#contact" className={`btn btn-cta ${styles.desktopCta}`}>
-            Get Quote
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M7 7h10v10"/>
-              <path d="M7 17 17 7"/>
-            </svg>
+            <picture>
+              <source
+                media="(max-width: 767px)"
+                srcSet={withBase("/images/logo-mobile.avif")}
+                type="image/avif"
+              />
+              <Image
+                src={withBase("/images/logo-desktop.avif")}
+                alt="Cargo Flow Africa Transport Group"
+                width={160}
+                height={40}
+                priority
+                className={styles.logoImg}
+              />
+            </picture>
           </Link>
 
-          <button
-            className={styles.menuBtn}
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label={isOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isOpen}
-            aria-controls="mobile-nav"
-          >
-            {isOpen ? (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <line x1="18" y1="6" x2="6" y2="18"/>
-                <line x1="6" y1="6" x2="18" y2="18"/>
-              </svg>
-            ) : (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <line x1="4" y1="6" x2="20" y2="6"/>
-                <line x1="4" y1="12" x2="20" y2="12"/>
-                <line x1="4" y1="18" x2="20" y2="18"/>
-              </svg>
-            )}
-          </button>
-        </div>
-      </div>
+          <nav className={styles.desktopNav} aria-label="Main navigation">
+            <Link href="#about" className={styles.navLink}>About Us</Link>
+            <Link href="#services" className={styles.navLink}>Services</Link>
+            <Link href="#industries" className={styles.navLink}>Industries</Link>
+            <Link href="#process" className={styles.navLink}>Process</Link>
+            <Link href="#contact" className={styles.navLink}>Contact Us</Link>
+            <a
+              href={withBase("/profile.pdf")}
+              download
+              className={styles.navLink}
+            >
+              Profile
+              <span className={styles.externalArrow} aria-hidden="true">↗</span>
+            </a>
+          </nav>
 
-      {/* Mobile Navigation */}
-      <nav
-        id="mobile-nav"
-        className={`${styles.mobileNav} ${isOpen ? styles.mobileNavOpen : ""}`}
-        aria-label="Mobile navigation"
+          <div className={styles.actions}>
+            <Link href="#contact" className={styles.cta}>
+              Get Quote
+              <span className={styles.ctaArrow} aria-hidden="true">→</span>
+            </Link>
+
+            <button
+              type="button"
+              className={`${styles.burger}${isOpen ? ` ${styles.burgerOpen}` : ""}`}
+              aria-expanded={isOpen}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              onClick={() => setIsOpen((v) => !v)}
+            >
+              <span />
+              <span />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div
+        className={`${styles.mobilePanel}${isOpen ? ` ${styles.mobileOpen}` : ""}`}
+        data-theme={theme}
+        aria-hidden={!isOpen}
       >
-        <div className={`container ${styles.mobileNavInner}`}>
-          <Link href="#about"      className={styles.mobileLink} onClick={closeMenu}>About Us</Link>
-          <Link href="#services"   className={styles.mobileLink} onClick={closeMenu}>Services</Link>
+        <nav aria-label="Mobile navigation" className={styles.mobileNav}>
+          <Link href="#about" className={styles.mobileLink} onClick={closeMenu}>About Us</Link>
+          <Link href="#services" className={styles.mobileLink} onClick={closeMenu}>Services</Link>
           <Link href="#industries" className={styles.mobileLink} onClick={closeMenu}>Industries</Link>
-          <Link href="#process"    className={styles.mobileLink} onClick={closeMenu}>Process</Link>
-          <Link href="#contact"    className={styles.mobileLink} onClick={closeMenu}>Contact Us</Link>
+          <Link href="#process" className={styles.mobileLink} onClick={closeMenu}>Process</Link>
+          <Link href="#contact" className={styles.mobileLink} onClick={closeMenu}>Contact Us</Link>
           <a
             href={withBase("/profile.pdf")}
             download
-            className={`${styles.mobileLink} ${styles.navLinkDownload}`}
+            className={styles.mobileLink}
             onClick={closeMenu}
           >
             Profile
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M14 2H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-8l-8-8z"/>
-              <path d="M14 2v8h8"/>
-              <path d="M12 19v-8a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v8"/>
-              <path d="M10 17l2 2 2-2"/>
-            </svg>
+            <span className={styles.externalArrow} aria-hidden="true">↗</span>
           </a>
-          <Link href="#contact" className={`btn btn-primary ${styles.mobileCta}`} onClick={closeMenu}>
-            Get a Transport Quote
+          <Link
+            href="#contact"
+            className={styles.mobileCta}
+            onClick={closeMenu}
+          >
+            Get a Transport Quote →
           </Link>
-        </div>
-      </nav>
-    </header>
+        </nav>
+      </div>
+    </>
   );
 }

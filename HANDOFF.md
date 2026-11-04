@@ -45,20 +45,23 @@ cargoflow-nextjs/
 │   │   ├── Header/          (Header.tsx, Header.module.css - includes mobile drawer state)
 │   │   └── Footer/          (Footer.tsx, Footer.module.css)
 │   └── home_page/
-│       ├── Hero/            (Hero.tsx, Hero.module.css - hero image + transit card)
-│       ├── About/           (About.tsx, About.module.css - 6 core pillars)
-│       ├── Services/        (Services.tsx, Services.module.css - data-driven)
-│       ├── Industries/      (Industries.tsx, Industries.module.css - data-driven)
-│       ├── Process/         (Process.tsx, Process.module.css - 5-step sticky layout)
-│       ├── Network/         (Network.tsx, Network.module.css - 12 SADC countries & vetting)
-│       └── Contact/         (Contact.tsx, Contact.module.css - contact card & enquiry form CTA)
+│       ├── Hero/            (Hero.tsx, HeroDesktop.tsx, HeroMobile.tsx - ground-up split)
+│       ├── About/           (About.tsx, AboutDesktop.tsx, AboutMobile.tsx - ground-up split)
+│       ├── Services/        (Services.tsx, ServicesDesktop.tsx, ServicesMobile.tsx, Services.css - ground-up split with GSAP ScrollTrigger)
+│       ├── Industries/      (Industries.tsx, IndustriesDesktop.tsx, IndustriesMobile.tsx - ground-up split)
+│       ├── Process/         (Process.tsx, ProcessDesktop.tsx, ProcessMobile.tsx - ground-up split)
+│       ├── Network/         (Network.tsx, NetworkDesktop.tsx, NetworkMobile.tsx - ground-up split)
+│       └── Contact/         (Contact.tsx, ContactDesktop.tsx, ContactMobile.tsx - ground-up split)
 ├── lib/
+│   ├── useIsMobile.ts       (SSR-safe viewport breakpoint detection hook)
+│   ├── withBase.ts          (Base-path helper for static deployments)
+│   ├── site.ts              (Multi-tenant domain & locale config)
 │   └── data/
-│       ├── services.ts      (Centralized service card content & IDs)
+│       ├── services.ts      (Centralized 6 core freight services)
 │       ├── industries.ts    (Centralized industry details & icons)
 │       └── process-steps.ts (Centralized process step content)
 └── public/
-    ├── images/              (hero_landing.avif, logo-desktop.avif, logo-mobile.avif)
+    ├── images/              (hero_landing.avif, logo-desktop.avif, logo-mobile.avif, services/ [s1-s6 avif & webp])
     ├── profile.pdf
     ├── favicon-16x16.png
     ├── android-chrome-192x192.png

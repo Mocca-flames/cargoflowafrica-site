@@ -1,0 +1,174 @@
+.section {
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-20);
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-card);
+  margin-top: var(--space-12);
+}
+
+.intro {
+  margin-bottom: var(--space-8);
+}
+
+.heading {
+  font-size: clamp(1.85rem, 7vw, 2.35rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--color-foreground);
+}
+
+.accentItalic {
+  color: var(--color-accent);
+  font-style: italic;
+}
+
+.body {
+  margin-top: var(--space-3);
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  line-height: 1.65;
+}
+
+.mobileStack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ── Mobile Office Card ── */
+.officeCard {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  padding: 1.25rem;
+  box-shadow: 0 2px 10px rgba(18, 56, 47, 0.05);
+}
+
+.officeHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.officeBadge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-secondary);
+  color: var(--color-foreground);
+}
+
+.officeName {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-foreground);
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.contactIconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background-color: var(--color-secondary);
+  color: var(--color-foreground);
+  flex-shrink: 0;
+}
+
+.contactLabel {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--color-muted);
+  margin-bottom: 0.15rem;
+}
+
+.contactLink {
+  display: block;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--color-foreground);
+}
+
+.contactLink + .contactLink {
+  margin-top: 0.25rem;
+}
+
+.address {
+  font-weight: 500;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  font-style: normal;
+  color: var(--color-foreground);
+}
+
+/* ── Mobile CTA Card ── */
+.ctaCard {
+  position: relative;
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+  border-radius: var(--radius-2xl);
+  padding: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 8px 24px -4px rgba(18, 56, 47, 0.25);
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  z-index: 0;
+}
+
+.ctaInner {
+  position: relative;
+  z-index: 1;
+}
+
+.ctaTitle {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary-foreground);
+}
+
+.ctaBody {
+  color: rgba(248, 244, 235, 0.75);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+.ctaBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 3.125rem;
+  font-size: 0.95rem;
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  gap: 0.5rem;
+}
