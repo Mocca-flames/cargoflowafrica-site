@@ -144,10 +144,20 @@ export default function Header({ immersive }: HeaderProps = {}) {
           </nav>
 
           <div className={styles.actions}>
-            <Link href="#contact" className={styles.cta}>
+            <Link href="#contact" className={`${styles.cta} ${styles.ctaGhost}`}>
               Get Quote
               <span className={styles.ctaArrow} aria-hidden="true">→</span>
             </Link>
+
+            <a
+              href="https://transport.cargoflowafrica.co.za"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.cta}
+            >
+              Active Loads
+              <span className={styles.ctaArrow} aria-hidden="true">↗</span>
+            </a>
 
             <button
               type="button"
@@ -183,12 +193,21 @@ export default function Header({ immersive }: HeaderProps = {}) {
             Profile
             <span className={styles.externalArrow} aria-hidden="true">↗</span>
           </a>
-          <Link
-            href="#contact"
+          <a
+            href="https://transport.cargoflowafrica.co.za"
+            target="_blank"
+            rel="noopener noreferrer"
             className={styles.mobileCta}
             onClick={closeMenu}
           >
-            Get a Transport Quote →
+            Active Loads ↗
+          </a>
+          <Link
+            href="#contact"
+            className={styles.mobileCtaGhost}
+            onClick={closeMenu}
+          >
+            Get a Quote →
           </Link>
         </nav>
       </div>

@@ -30,15 +30,20 @@ export default function HeroDesktop() {
           </p>
 
           <div className={styles.ctaRow}>
-            <Link href="#contact" className={`btn btn-primary btn-lg ${styles.ctaPrimary}`}>
-              Get a Transport Quote
+            <a
+              href="https://transport.cargoflowafrica.co.za"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`btn btn-primary btn-lg ${styles.ctaPrimary}`}
+            >
+              Active Loads
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M7 7h10v10"/>
                 <path d="M7 17 17 7"/>
               </svg>
-            </Link>
-            <Link href="#services" className="btn btn-secondary btn-lg">
-              View Our Services
+            </a>
+            <Link href="#contact" className="btn btn-secondary btn-lg">
+              Get a Transport Quote
             </Link>
           </div>
 

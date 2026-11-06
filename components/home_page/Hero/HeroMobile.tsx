@@ -51,11 +51,13 @@ export default function HeroMobile() {
           </div>
 
           <div className={styles.ctaStack}>
-            <Link
-              href="#contact"
+            <a
+              href="https://transport.cargoflowafrica.co.za"
+              target="_blank"
+              rel="noopener noreferrer"
               className={styles.ctaBtnPrimary}
             >
-              Request Quote
+              Active Loads
               <svg
                 width="16"
                 height="16"
@@ -71,12 +73,12 @@ export default function HeroMobile() {
                 <path d="M7 7h10v10" />
                 <path d="M7 17 17 7" />
               </svg>
-            </Link>
+            </a>
             <Link
-              href="#services"
+              href="#contact"
               className={styles.ghostBtn}
             >
-              Current Loads
+              Request Quote
             </Link>
           </div>
         </div>
