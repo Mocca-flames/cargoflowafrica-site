@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { withBase } from "@/lib/withBase";
-import Link from "next/link";
 import styles from "./HeroDesktop.module.css";
 
 export default function HeroDesktop() {
@@ -23,18 +22,30 @@ export default function HeroDesktop() {
           </h1>
 
           <p className={styles.subheadline}>
-            Cargo Flow Africa Transport Group is an African transport brokerage
-            and logistics coordination company. We connect businesses, commodity
-            traders, and manufacturers with verified transport operators capable
-            of meeting their specific cargo requirements.
+            Cargo Flow Africa Transport Group connects commercial shippers, factories,
+            farms, and commodity traders with verified regional transport capacity.
+            Post loads directly through our Client Portal or coordinate dedicated
+            freight across the SADC region.
           </p>
 
           <div className={styles.ctaRow}>
             <a
-              href="https://transport.cargoflowafrica.co.za"
+              href="https://client.cargoflowafrica.co.za"
               target="_blank"
               rel="noopener noreferrer"
               className={`btn btn-primary btn-lg ${styles.ctaPrimary}`}
+            >
+              Post a Load &mdash; Client Portal
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M7 7h10v10"/>
+                <path d="M7 17 17 7"/>
+              </svg>
+            </a>
+            <a
+              href="https://transport.cargoflowafrica.co.za"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-secondary btn-lg"
             >
               Active Loads
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -42,9 +53,6 @@ export default function HeroDesktop() {
                 <path d="M7 17 17 7"/>
               </svg>
             </a>
-            <Link href="#contact" className="btn btn-secondary btn-lg">
-              Get a Transport Quote
-            </Link>
           </div>
 
           <div className={styles.stats}>

@@ -144,19 +144,24 @@ export default function Header({ immersive }: HeaderProps = {}) {
           </nav>
 
           <div className={styles.actions}>
-            <Link href="#contact" className={`${styles.cta} ${styles.ctaGhost}`}>
-              Get Quote
-              <span className={styles.ctaArrow} aria-hidden="true">→</span>
-            </Link>
-
             <a
               href="https://transport.cargoflowafrica.co.za"
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.cta}
+              className={`${styles.cta} ${styles.ctaGhost}`}
             >
               Active Loads
               <span className={styles.ctaArrow} aria-hidden="true">↗</span>
+            </a>
+
+            <a
+              href="https://client.cargoflowafrica.co.za"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.cta}
+            >
+              Client Portal
+              <span className={styles.ctaArrow} aria-hidden="true">→</span>
             </a>
 
             <button
@@ -194,21 +199,23 @@ export default function Header({ immersive }: HeaderProps = {}) {
             <span className={styles.externalArrow} aria-hidden="true">↗</span>
           </a>
           <a
-            href="https://transport.cargoflowafrica.co.za"
+            href="https://client.cargoflowafrica.co.za"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.mobileCta}
             onClick={closeMenu}
           >
-            Active Loads ↗
+            Client Portal →
           </a>
-          <Link
-            href="#contact"
+          <a
+            href="https://transport.cargoflowafrica.co.za"
+            target="_blank"
+            rel="noopener noreferrer"
             className={styles.mobileCtaGhost}
             onClick={closeMenu}
           >
-            Get a Quote →
-          </Link>
+            Active Loads ↗
+          </a>
         </nav>
       </div>
     </>

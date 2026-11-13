@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { withBase } from "@/lib/withBase";
-import Link from "next/link";
 import styles from "./HeroMobile.module.css";
 
 export default function HeroMobile() {
@@ -29,11 +28,9 @@ export default function HeroMobile() {
           </h1>
 
           <p className={styles.subheadline}>
-            Cargo Flow Africa Transport Group connects commercial traders, mining
-            shippers, and manufacturers with verified regional transport capacity.
+            Cargo Flow Africa Transport Group connects commercial shippers, factories,
+            and commodity traders with verified regional transport capacity.
           </p>
-
-          
 
           <div className={styles.statsRibbon}>
             <div className={styles.statItem}>
@@ -52,10 +49,33 @@ export default function HeroMobile() {
 
           <div className={styles.ctaStack}>
             <a
-              href="https://transport.cargoflowafrica.co.za"
+              href="https://client.cargoflowafrica.co.za"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.ctaBtnPrimary}
+            >
+              Post a Load &mdash; Client Portal
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+                style={{ marginLeft: "0.5rem" }}
+              >
+                <path d="M7 7h10v10" />
+                <path d="M7 17 17 7" />
+              </svg>
+            </a>
+            <a
+              href="https://transport.cargoflowafrica.co.za"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.ghostBtn}
             >
               Active Loads
               <svg
@@ -74,12 +94,6 @@ export default function HeroMobile() {
                 <path d="M7 17 17 7" />
               </svg>
             </a>
-            <Link
-              href="#contact"
-              className={styles.ghostBtn}
-            >
-              Request Quote
-            </Link>
           </div>
         </div>
       </section>

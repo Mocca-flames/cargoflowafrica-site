@@ -6,7 +6,7 @@
 }
 
 .intro {
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-10);
 }
 
 .heading {
@@ -25,53 +25,169 @@
   line-height: 1.65;
 }
 
-/* ── Mobile Stack ── */
+/* ── Image-forward stack ── */
 .stack {
   display: flex;
   flex-direction: column;
-  gap: 0.875rem;
+  gap: var(--space-6);
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.card {
-  padding: 1.25rem;
+.showcase {
+  position: relative;
+  min-height: 480px;
   border-radius: var(--radius-xl);
-  background-color: var(--color-surface);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.25rem;
+  isolation: isolate;
+  background-color: var(--color-ink);
   border: 1px solid var(--color-border);
-  box-shadow: 0 2px 8px rgba(18, 56, 47, 0.04);
+  box-shadow: var(--shadow-md);
 }
 
-.cardHeader {
+.image {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-visual);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Accessibility scrim — bottom-anchored for thumb-height readability. */
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-data);
+  background: linear-gradient(
+    to top,
+    rgba(10, 18, 14, 0.95) 0%,
+    rgba(10, 18, 14, 0.82) 40%,
+    rgba(10, 18, 14, 0.3) 75%,
+    rgba(10, 18, 14, 0.12) 100%
+  );
+}
+
+/* ── Content (primary layer) ── */
+.content {
+  position: relative;
+  z-index: var(--z-text);
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.5rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.875rem;
+  color: #f8f4eb;
 }
 
-.iconWrap {
-  display: flex;
+.catBadge {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: var(--radius-lg);
-  background-color: var(--color-secondary);
-  color: var(--color-ink);
-  flex-shrink: 0;
+  gap: 0.4rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--radius-full);
+  background: rgba(212, 164, 76, 0.14);
+  border: 1px solid rgba(212, 164, 76, 0.45);
+  color: var(--color-accent-gold);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
 }
 
-.cardTitle {
-  font-size: 1.0625rem;
+.catBadgeIcon {
+  display: inline-flex;
+}
+
+.catBadgeIcon svg {
+  width: 13px;
+  height: 13px;
+}
+
+.title {
+  font-size: clamp(1.5rem, 6.5vw, 1.75rem);
   font-weight: 600;
-  color: var(--color-foreground);
-  line-height: 1.3;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: #f8f4eb;
+  margin: 0;
 }
 
-.cardBody {
-  font-size: 0.85rem;
-  color: var(--color-muted);
+.narrative {
+  font-size: 0.875rem;
   line-height: 1.6;
+  color: rgba(248, 244, 235, 0.85);
   margin: 0;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(248, 244, 235, 0.92);
+}
+
+.statIcon {
+  display: inline-flex;
+  color: var(--color-accent-gold);
+}
+
+.statIcon svg {
+  width: 13px;
+  height: 13px;
+}
+
+.cta {
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 0.25rem;
+  box-shadow: 0 10px 24px -10px rgba(212, 164, 76, 0.5);
+}
+
+.ctaArrow {
+  display: inline-flex;
+}
+
+/* ── Floating glassmorphic micro-badge (depth layer) ── */
+.floatBadge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: var(--z-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: var(--radius-full);
+  background: rgba(248, 244, 235, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(12px) saturate(1.3);
+  -webkit-backdrop-filter: blur(12px) saturate(1.3);
+  color: #f8f4eb;
+  font-size: 0.68rem;
+  font-weight: 500;
+  max-width: calc(100% - 2rem);
+  box-shadow: 0 6px 18px -6px rgba(8, 26, 21, 0.55);
+  pointer-events: none;
+}
+
+.floatBadgeIcon {
+  display: inline-flex;
+  color: var(--color-accent-gold);
 }

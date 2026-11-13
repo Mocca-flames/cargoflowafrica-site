@@ -111,16 +111,34 @@ export default function Footer() {
             </nav>
           </div>
 
-          {/* Services */}
+          {/* Platforms & Services */}
           <div className={styles.linkGroup}>
-            <h4 className={`font-serif ${styles.linkGroupTitle}`}>Services</h4>
-            <nav aria-label="Footer services links">
+            <h4 className={`font-serif ${styles.linkGroupTitle}`}>Platforms</h4>
+            <nav aria-label="Footer platforms links">
               <ul className={styles.linkList}>
+                <li>
+                  <a
+                    href="https://client.cargoflowafrica.co.za"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.footerLink}
+                  >
+                    Client Portal (Post Loads) ↗
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://transport.cargoflowafrica.co.za"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.footerLink}
+                  >
+                    Transporter Portal (Active Loads) ↗
+                  </a>
+                </li>
                 <li><Link href="#services" className={styles.footerLink}>Transport Brokerage</Link></li>
-                <li><Link href="#services" className={styles.footerLink}>Bulk Cargo Coordination</Link></li>
                 <li><Link href="#services" className={styles.footerLink}>Cross-Border Transport</Link></li>
-                <li><Link href="#services" className={styles.footerLink}>Load &amp; Capacity Matching</Link></li>
-                <li><Link href="#contact"  className={styles.footerLink}>Get a Quote</Link></li>
+                <li><Link href="#contact"  className={styles.footerLink}>Send an Enquiry</Link></li>
               </ul>
             </nav>
           </div>

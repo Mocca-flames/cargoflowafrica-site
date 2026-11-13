@@ -1,0 +1,221 @@
+================================================================================
+CARGO FLOW AFRICA TRANSPORT GROUP
+SECTOR IMAGE SOURCING & GENERATION SPECIFICATION
+File: instructions_images.txt  | Owner: Marketing / Web  | Status: ACTIVE
+================================================================================
+
+The Industries ("Cargo & Industries We Support") section on the home page is
+built as six full-bleed, image-forward showcase sections. Placeholders
+currently ship from:  scripts/generate_sector_placeholders.py
+  -> regenerates:  python scripts/generate_sector_placeholders.py
+
+This document specifies the FINAL imagery to replace those placeholders.
+Drop-in replacement requires zero code changes: keep the exact filenames and
+paths below (the components read them from lib/data/industries.ts).
+
+--------------------------------------------------------------------------------
+1. GLOBAL PHOTOGRAPHY STYLE GUIDE
+--------------------------------------------------------------------------------
+
+1.1 COMPOSITION
+  - Cinematic wide-angle establishing shots; the story lives in the vehicle,
+    the load, and the environment together — never a generic truck cut-out.
+  - Shallow depth of field where possible (subject tack-sharp, background
+    softly compressed). Telephoto compression (85mm–200mm full-frame
+    equivalent) is preferred for side-profile vehicle shots; 24mm–35mm for
+    scene-setting wides.
+  - Authentic African trade corridors: N4/N1 Southern African highways, SADC
+    border posts, open-pit mines, grain belts, industrial precincts, remote
+    construction sites and inland container terminals.
+  - Dusk / dawn "golden hour" industrial lighting as the default mood.
+    Night shots are acceptable only when lit by site floodlights or vehicle
+    work lights for the six images as a set.
+  - Leave negative space on ONE side of the frame (left or right) — the UI
+    overlays a dark gradient scrim + text on that side. Text-safe side must
+    stay free of critical detail. Each sector below names its text-safe side.
+  - Focal point of every image should sit slightly off-center toward the
+    RIGHT third of the frame (matching the CSS focal hints in
+    lib/data/industries.ts), unless noted otherwise.
+
+1.2 COLOR GRADING
+  - Warm cinematic grade. High contrast, deep shadows that stay readable.
+  - Brand-adjacent palette anchors: earthy greens (forest #12382f family),
+    dark charcoal, warm ochres/gold (#d4a44c), terracotta accents (#b9623e),
+    warm cream highlights (#f8f4eb).
+  - Sky tones: golden-spectrum dusk, hazy green-gold morning, warm industrial
+    haze. Avoid blue-dominant or heavily saturated HDR looks.
+
+  - Realistic, filmic grain is welcome — NON-generic stock look. No visible
+    watermarks, no fake lens flares, no cartoonish over-processing.
+  - Trucks/vehicles should be neutral (white, charcoal, dark green or earth
+    tones) so any future brand livery can be recoloured in post.
+
+1.3 TECHNICAL / DELIVERY SPEC
+  - Aspect ratio: 16:9  (portrait crops NOT required; CSS object-fit: cover
+    + object-position handle responsive cropping)
+  - Resolution: 1920 x 1080 px (min. 1600 x 900; never upscale)
+  - DPI: 72–96 (screen use)
+  - Format: WebP, visually lossless quality (~q80), under 300 KB per file.
+    (Reduce width to 1600 if a scene cannot hit 300 KB.)
+  - Color profile: sRGB
+  - File naming (exact, lowercase, hyphenated — mirrors industry ids):
+      public/images/sectors/mining-minerals.webp
+      public/images/sectors/agriculture.webp
+      public/images/sectors/construction.webp
+      public/images/sectors/manufacturing.webp
+      public/images/sectors/trade-distribution.webp
+      public/images/sectors/project-cargo.webp
+  - Compression reference:
+      cwebp -q 80 -resize 1920 0 input.jpg -o output.webp
+      (or: python -c "from PIL import Image; Image.open('in.jpg').save(
+           'out.webp', quality=80, method=6)")
+  - Licensing: commercial, perpetual, worldwide web use; model/property
+    releases where identifiable people/plates appear. Blur or avoid readable
+    third-party branding and competitor liveries.
+
+  - SET CONSISTENCY (critical): the six images render as one scrolling
+    sequence. Keep a shared grade, shared time-of-day family and shared
+    horizon height so the page reads as one story, not six postcards.
+
+--------------------------------------------------------------------------------
+2. SECTOR-BY-SECTOR BRIEFS + GENERATIVE PROMPTS
+--------------------------------------------------------------------------------
+
+Legend:  TEXT-SIDE = side of frame reserved for the UI scrim/overlay text.
+         Prompts are paste-ready for Midjourney (v6+/Niji off) and FLUX
+         (Append --ar 16:9 for MJ; for FLUX keep the phrase "cinematic
+         16:9 wide shot" and run at 1920x1080).
+
+2.1 MINING & MINERALS                              filename: mining-minerals.webp
+--------------------------------------------------------------------------------
+Scene: Massive haul tipper (34-ton payload class) loaded with ore, climbing
+the ramp of an open-pit mine at dusk. Stepped terraced pit walls behind,
+gold-ochre dust haze catching low sun, vehicle dust trail, faint fleet
+telemetry masts in distance. Text-safe side: LEFT.
+Focal hint (CSS object-position): 58% 62%.
+
+Prompt (copy-paste):
+  cinematic wide shot, loaded mining haul tipper truck climbing open-pit
+  terraced ramp at golden dusk, ochre dust haze, stepped pit walls, warm
+  high-contrast grade, deep forest-green shadows, shot on 135mm telephoto,
+  f/2.8, shallow depth of field, low sun rim lighting on dust, authentic
+  Southern African mine, filmic realism, no logos, text-safe empty left
+  half of frame --ar 16:9
+
+MJ style tail (add if needed): --style raw --stylize 250
+
+2.2 AGRICULTURE                                    filename: agriculture.webp
+--------------------------------------------------------------------------------
+Scene: Grain hopper truck on a dirt farm road between ripening field rows
+converging to the horizon, grain silos and reefer units in mid-distance,
+sunrise mist over the lands. Optional second unit: refrigerated trailer.
+Text-safe side: RIGHT.
+Focal hint: 50% 58%.
+
+Prompt (copy-paste):
+  cinematic wide shot, grain hopper truck on farm dirt road between golden
+  mielie/cereal field rows converging to horizon, grain silos and reefer
+  trailer in soft distance, sunrise mist, warm hazy backlight, earthy green
+  and ochre palette, 35mm lens, f/2.8, atmospheric haze, authentic Southern
+  African farmlands, filmic realism, no logos, text-safe empty right half of
+  frame --ar 16:9
+
+2.3 CONSTRUCTION & INFRASTRUCTURE                  filename: construction.webp
+--------------------------------------------------------------------------------
+Scene: Cement tanker and flatbed delivering to a large infrastructure site —
+tower crane silhouette against a terracotta-gold dusk, structural concrete
+skeleton, batching plant glow, engraved plotting of mega-project scale.
+Text-safe side: LEFT.
+Focal hint: 62% 60%.
+
+Prompt (copy-paste):
+  cinematic wide shot, cement tanker truck arriving at major construction
+  site at dusk, tower crane silhouette against terracotta gold sky,
+  concrete skeleton under construction, site floodlights beginning to glow,
+  warm high-contrast industrial grade, 85mm lens, f/2.8, compressed
+  background, dust in the air, authentic African mega-project, filmic
+  realism, no logos, text-safe empty left half of frame --ar 16:9
+
+2.4 MANUFACTURING & INDUSTRY                       filename: manufacturing.webp
+--------------------------------------------------------------------------------
+Scene: Enclosed tautliner/curtainsider pulling out of an industrial
+precinct at first light — warehouse roller doors, factory stacks with soft
+steam, Just-in-Time line-feed mood, cool-dawn air warming to gold.
+Text-safe side: LEFT.
+Focal hint: 55% 60%.
+
+Prompt (copy-paste):
+  cinematic wide shot, enclosed tautliner curtain-side truck leaving an
+  industrial warehouse precinct at dawn, factory stacks with soft steam,
+  roller doors with warm interior glow, cool green-grey morning air warming
+  to golden light, wet asphalt reflections possible, 50mm lens, f/2.8,
+  shallow depth of field, authentic African industrial corridor, filmic
+  realism, no logos, text-safe empty left half of frame --ar 16:9
+
+2.5 TRADE & DISTRIBUTION                           filename: trade-distribution.webp
+--------------------------------------------------------------------------------
+Scene: Inland terminal at dusk — stacked shipping containers in ochre,
+terracotta and dark green, gantry crane silhouette, container truck moving
+in the foreground with the sun flaring behind the stack. Bonded-warehouse
+mood. Text-safe side: LEFT.
+Focal hint: 60% 55%.
+
+Prompt (copy-paste):
+  cinematic wide shot, container truck passing stacked shipping containers
+  at an inland intermodal terminal at dusk, gantry crane silhouette, ochre
+  terracotta and dark green container palette, golden sun flare behind
+  stack, warm hazy industrial glow, 35mm lens, f/2.8, motion energy in
+  vehicle, authentic Southern African logistics terminal, filmic realism,
+  no readable logos, text-safe empty left half of frame --ar 16:9
+
+2.6 PROJECT & SPECIALISED CARGO                    filename: project-cargo.webp
+--------------------------------------------------------------------------------
+Scene: Low-loader abnormal load in full convoy — out-of-gauge steel beam on
+a multi-axle lowbed, escort vehicles with beacons front and rear, hazard
+chevron deck, rural highway at dusk with telegraph lines and gold sky.
+Engineering-transport gravitas. Text-safe side: LEFT.
+Focal hint: 64% 64%.
+
+Prompt (copy-paste):
+  cinematic wide shot, oversized out-of-gauge steel component carried on a
+  multi-axle low-loader convoy with escort vehicles and beacons on a rural
+  Southern African highway at dusk, warm gold sky, hazard chevron deck,
+  long low engineering silhouette, 135mm telephoto, f/2.8, shallow depth of
+  field, high-contrast warm grade, filmic realism, no readable logos,
+  text-safe empty left half of frame --ar 16:9
+
+--------------------------------------------------------------------------------
+3. FLUX / OTHER GENERATORS — GLOBAL NEGATIVE PROMPT
+--------------------------------------------------------------------------------
+Append or enable as negatives everywhere:
+  generic stock photo look, oversized watermark, spoke wheels mismatch,
+  deformed vehicle wheels, cartoon, 3D render, oversaturated HDR, blue
+  cold grade, front-on dealer-shot composition, busy cluttered left side,
+  readable third-party logos, license plates, smoke without source
+
+FLUX guidance preference: run as "cinematic photography" (not illustration),
+steps 28+, guidance ~3.5, then export sRGB WebP per §1.3.
+
+--------------------------------------------------------------------------------
+4. QA CHECKLIST BEFORE SHIPPING TO public/images/sectors/
+--------------------------------------------------------------------------------
+[ ] Exact filename from §1.3, lowercase, .webp, sRGB
+[ ] 16:9, >=1600x900, file size <300 KB
+[ ] Text-safe side genuinely empty of critical subject detail
+[ ] Six images grade as one consistent, warm, high-contrast set
+[ ] No readable third-party branding; releases on file where required
+[ ] Visual QA in place: view / (desktop + <1024px mobile) — text must pass
+    contrast over the scrim on every card, focal points must not clip
+
+--------------------------------------------------------------------------------
+5. NOTES
+--------------------------------------------------------------------------------
+- CSS handles responsive cropping via object-position focal hints stored in
+  lib/data/industries.ts — update those values there (never hard-code in CSS)
+  if imagery changes.
+- Placeholder provenance: scripts/generate_sector_placeholders.py returns
+  deterministic output (seeded). Delete the script only once real assets
+  are approved and versioned in git.
+- Keep this file versioned alongside the code so the next photographer or
+  generation batch lands in-spec.
+================================================================================
