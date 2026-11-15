@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local-only email signature sources (not deployed, not committed)
+/public/email/signature.html
+/public/email/truck-original.png
+/public/email/truck-test.png
+/public/email/truck_crane.png
+/public/email/vertical.png
