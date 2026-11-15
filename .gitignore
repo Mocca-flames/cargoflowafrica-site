@@ -40,8 +40,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# local-only email signature sources (not deployed, not committed)
-/public/email/signature.html
+# local-only email signature source art (not deployed, not committed)
 /public/email/truck-original.png
 /public/email/truck-test.png
 /public/email/truck_crane.png
