@@ -116,8 +116,8 @@ export default function ContactDesktop() {
                     </div>
                     <div>
                       <span className={styles.contactLabel}>Telephone &amp; WhatsApp</span>
-                      <a href="tel:+27817584591" className={styles.contactLink}>+27 81 758 4591</a>
-                      <a href="https://wa.me/27817584591" className={styles.contactLink} target="_blank" rel="noopener noreferrer">
+                      <a href="tel:+27837451986" className={styles.contactLink}>+27 81 758 4591</a>
+                      <a href="https://wa.me/27837451986" className={styles.contactLink} target="_blank" rel="noopener noreferrer">
                         WhatsApp: +27 81 758 4591
                       </a>
                     </div>

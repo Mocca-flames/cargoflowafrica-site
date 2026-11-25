@@ -147,7 +147,7 @@ export default function RootLayout({
                     },
                     {
                       "@type": "ContactPoint",
-                      telephone: "+27817584591",
+                      telephone: "+27837451986",
                       contactType: "customer service",
                       areaServed: "ZA",
                       availableLanguage: "English",
@@ -155,7 +155,7 @@ export default function RootLayout({
                   ],
                   sameAs: [
                     "https://wa.me/26773732442",
-                    "https://wa.me/27817584591",
+                    "https://wa.me/27837451986",
                   ],
                 },
                 {
